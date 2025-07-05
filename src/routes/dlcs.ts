@@ -4,7 +4,9 @@ import { supabase } from '@/db.ts'
 const dlcs = new Hono()
 
 dlcs.get('/', async (c) => {
-  const { data, error } = await supabase.from('downloadable_contents').select('*')
+  const { data, error } = await supabase.from('downloadable_contents').select(
+    '*',
+  )
 
   if (error) {
     return c.json({ error }, 500)
