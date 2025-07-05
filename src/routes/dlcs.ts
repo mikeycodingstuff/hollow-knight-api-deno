@@ -1,34 +1,57 @@
 import { Hono } from 'hono'
-import { supabase } from '@/db.ts'
+import { eq } from 'drizzle-orm'
+import { db } from '@/db.ts'
+import { dlcs } from '@/db/schema.ts'
+import { getIncludes } from '@/helpers.ts'
 
-const dlcs = new Hono()
+const dlcsRouter = new Hono()
 
-dlcs.get('/', async (c) => {
-  const { data, error } = await supabase.from('downloadable_contents').select(
-    '*',
-  )
+function buildIncludeOptions(includes: string[]) {
+  const withOptions: Record<string, any> = {}
 
-  if (error) {
-    return c.json({ error }, 500)
+  if (includes.includes('charms')) {
+    withOptions.charms = true
   }
 
-  return c.json({ data })
+  return withOptions
+}
+
+dlcsRouter.get('/', async (c) => {
+  const includes = getIncludes(c.req.query('include'))
+
+  try {
+    const withOptions = buildIncludeOptions(includes)
+
+    const data = await db.query.dlcs.findMany({
+      with: withOptions,
+    })
+
+    return c.json({ data })
+  } catch (_) {
+    return c.json({ error: 'Failed to fetch DLCs' }, 500)
+  }
 })
 
-dlcs.get('/:slug', async (c) => {
+dlcsRouter.get('/:slug', async (c) => {
   const slug = c.req.param('slug')
+  const includes = getIncludes(c.req.query('include'))
 
-  const { data, error } = await supabase
-    .from('downloadable_contents')
-    .select('*')
-    .eq('slug', slug)
-    .single()
+  try {
+    const withOptions = buildIncludeOptions(includes)
 
-  if (error) {
-    return c.json({ error: 'DLC not found' }, 404)
+    const data = await db.query.dlcs.findFirst({
+      where: eq(dlcs.slug, slug),
+      with: withOptions,
+    })
+
+    if (!data) {
+      return c.json({ error: 'DLC not found' }, 404)
+    }
+
+    return c.json({ data })
+  } catch (_) {
+    return c.json({ error: 'Failed to fetch DLC' }, 500)
   }
-
-  return c.json({ data })
 })
 
-export default dlcs
+export default dlcsRouter

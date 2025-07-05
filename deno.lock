@@ -2,7 +2,10 @@
   "version": "5",
   "specifiers": {
     "jsr:@hono/hono@^4.8.4": "4.8.4",
-    "npm:@types/node@*": "22.15.15"
+    "npm:@prisma/driver-adapter-utils@6.8.2": "6.8.2",
+    "npm:@types/node@*": "22.15.15",
+    "npm:drizzle-orm@~0.44.2": "0.44.2_postgres@3.4.7",
+    "npm:postgres@^3.4.7": "3.4.7"
   },
   "jsr": {
     "@hono/hono@4.8.4": {
@@ -10,47 +13,158 @@
     }
   },
   "npm": {
+    "@prisma/debug@6.8.2": {
+      "integrity": "sha512-4muBSSUwJJ9BYth5N8tqts8JtiLT8QI/RSAzEogwEfpbYGFo9mYsInsVo8dqXdPO2+Rm5OG5q0qWDDE3nyUbVg=="
+    },
+    "@prisma/driver-adapter-utils@6.8.2": {
+      "integrity": "sha512-5+CzN/41gBsRmA3ekbVy1TXnSImSPBtMlxWAttVH6tg94bv4zGGRmyk5tUCdT83nl0hG1Sq2oMXR7ml6aqILvw==",
+      "dependencies": [
+        "@prisma/debug"
+      ]
+    },
     "@types/node@22.15.15": {
       "integrity": "sha512-R5muMcZob3/Jjchn5LcO8jdKwSCbzqmPB6ruBxMcf9kbxtniZHP327s6C37iOfuw8mbKK3cAQa7sEl7afLrQ8A==",
       "dependencies": [
         "undici-types"
       ]
     },
+    "drizzle-orm@0.44.2_postgres@3.4.7": {
+      "integrity": "sha512-zGAqBzWWkVSFjZpwPOrmCrgO++1kZ5H/rZ4qTGeGOe18iXGVJWf3WPfHOVwFIbmi8kHjfJstC6rJomzGx8g/dQ==",
+      "dependencies": [
+        "postgres"
+      ],
+      "optionalPeers": [
+        "postgres"
+      ]
+    },
+    "postgres@3.4.7": {
+      "integrity": "sha512-Jtc2612XINuBjIl/QTWsV5UvE8UHuNblcO3vVADSrKsrc6RqGX6lOW1cEo3CM2v0XG4Nat8nI+YM7/f26VxXLw=="
+    },
     "undici-types@6.21.0": {
       "integrity": "sha512-iwDZqg0QAGrg9Rav5H4n0M64c3mkR59cJ6wQp+7C4nI0gsmExaedaYLNO44eT4AtBBwjbTiGPMlt2Md0T9H9JQ=="
     }
   },
   "redirects": {
-    "https://esm.sh/@supabase/node-fetch@^2.6.13?target=denonext": "https://esm.sh/@supabase/node-fetch@2.6.15?target=denonext",
-    "https://esm.sh/@supabase/node-fetch@^2.6.14?target=denonext": "https://esm.sh/@supabase/node-fetch@2.6.15?target=denonext",
-    "https://esm.sh/@supabase/supabase-js": "https://esm.sh/@supabase/supabase-js@2.50.3",
-    "https://esm.sh/isows@^1.0.7?target=denonext": "https://esm.sh/isows@1.0.7?target=denonext",
-    "https://esm.sh/tr46@~0.0.3?target=denonext": "https://esm.sh/tr46@0.0.3?target=denonext",
-    "https://esm.sh/webidl-conversions@^3.0.0?target=denonext": "https://esm.sh/webidl-conversions@3.0.1?target=denonext",
-    "https://esm.sh/whatwg-url@^5.0.0?target=denonext": "https://esm.sh/whatwg-url@5.0.0?target=denonext"
+    "https://esm.sh/drizzle-orm/pg-core": "https://esm.sh/drizzle-orm@0.44.2/pg-core",
+    "https://esm.sh/drizzle-orm/postgres-js": "https://esm.sh/drizzle-orm@0.44.2/postgres-js",
+    "https://esm.sh/postgres": "https://esm.sh/postgres@3.4.7",
+    "https://esm.sh/postgres@%3E=3?target=denonext": "https://esm.sh/postgres@3.4.7?target=denonext"
   },
   "remote": {
-    "https://esm.sh/@supabase/auth-js@2.70.0/denonext/auth-js.mjs": "51f137a91dc64489abf1a500582918ee5042e1e0b64c167f26a3b6d2f807f43c",
-    "https://esm.sh/@supabase/functions-js@2.4.5/denonext/functions-js.mjs": "acfcb4db90c292c335a9dbb5664485f5e0b680533d68e6942abb9387ec7e0d0b",
-    "https://esm.sh/@supabase/node-fetch@2.6.15/denonext/node-fetch.mjs": "0bae9052231f4f6dbccc7234d05ea96923dbf967be12f402764580b6bf9f713d",
-    "https://esm.sh/@supabase/node-fetch@2.6.15?target=denonext": "4d28c4ad97328403184353f68434f2b6973971507919e9150297413664919cf3",
-    "https://esm.sh/@supabase/postgrest-js@1.19.4/denonext/postgrest-js.mjs": "2073b5552ba10c7a8302bffffae771e3aede1daf833382355dae239fb0ab2576",
-    "https://esm.sh/@supabase/realtime-js@2.11.15/denonext/realtime-js.mjs": "3b7511415165a1b503eae1dfbc10814ef3d0c1c866c97fdec4f6714bfa34a847",
-    "https://esm.sh/@supabase/storage-js@2.7.1/denonext/storage-js.mjs": "73ac8cdc95cfcd794fe603dbd7ce06d539ab51538ae6467eabe0f9cc26c993aa",
-    "https://esm.sh/@supabase/supabase-js@2.50.3": "4fa1366e23dd8aaadcecafdc272e4eb7d0fb6896a186ab8cf7f62db74b300826",
-    "https://esm.sh/@supabase/supabase-js@2.50.3/denonext/supabase-js.mjs": "b333e6ade6dd2092a2685adfda71ea8a64bd0a8e1820a14b7f1d5dcdf8ac9cc7",
-    "https://esm.sh/isows@1.0.7/denonext/isows.mjs": "be1812ebbf28737b43588bbcbd89bf43345e3d58d32be13def331d12361045b4",
-    "https://esm.sh/isows@1.0.7?target=denonext": "31b7306eada995ba18e29841d688a42bcc0166caf302e1b183b6d2a7c649f262",
-    "https://esm.sh/tr46@0.0.3/denonext/tr46.mjs": "5753ec0a99414f4055f0c1f97691100f13d88e48a8443b00aebb90a512785fa2",
-    "https://esm.sh/tr46@0.0.3?target=denonext": "19cb9be0f0d418a0c3abb81f2df31f080e9540a04e43b0f699bce1149cba0cbb",
-    "https://esm.sh/webidl-conversions@3.0.1/denonext/webidl-conversions.mjs": "54b5c2d50a294853c4ccebf9d5ed8988c94f4e24e463d84ec859a866ea5fafec",
-    "https://esm.sh/webidl-conversions@3.0.1?target=denonext": "4e20318d50528084616c79d7b3f6e7f0fe7b6d09013bd01b3974d7448d767e29",
-    "https://esm.sh/whatwg-url@5.0.0/denonext/whatwg-url.mjs": "29b16d74ee72624c915745bbd25b617cfd2248c6af0f5120d131e232a9a9af79",
-    "https://esm.sh/whatwg-url@5.0.0?target=denonext": "f001a2cadf81312d214ca330033f474e74d81a003e21e8c5d70a1f46dc97b02d"
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/alias.mjs": "6ea46f88518eaff1b3908aa3de50565617533db92663054f938becd34c62c45b",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/cache/core.mjs": "fe0a7e9c8106be6091f9a306cf4519b6718a176202742ea6c271a560c0e8bc54",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/cache/core/cache.mjs": "10a7565b99641a0cb9bc40ab682e30dc91b0cf4795f8d093420cc7804635ec8b",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/casing.mjs": "1f269516c2f97ef8d65f53bf959a2b24b35f15bdd6d6221adf6ce59d8b830d5b",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/column-builder.mjs": "1d7bf2444e44c11576ad3b6c8beac69713e9e6120a811751685426a33c05eb1e",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/column.mjs": "d2cd1c9572dc7c9d74c575563fa45981ea6aaca5646cc03b1117c1b25b75d01c",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/entity.mjs": "f658bd633fc893f13df40e3e5040b773e1f9dd5762f0e93dea17accb0bff3f21",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/errors.mjs": "485c2f6f54a8a4801daf29e43f58b6c70c1c6baeab1f4ca24afb88f33818be71",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/logger.mjs": "bdb92aaf94f72f45c70484af68b75d7cf7c560fff0236efa6ebe5dcf549c5064",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core.mjs": "1a8c9027f04a597c5a55b3b26cf5e9670a8d6bea0d9356c6c80fa315ff377833",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/alias.mjs": "5dab575b02311abe3ca53ff112d4baa50ee87e423b4566343cf1212f6c6a42cf",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/checks.mjs": "8a009c5989c148df4c199da0ce3ca82861cc2cc7cd8742882ef5998898956d56",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/columns.mjs": "70dcf203f12c4097b1f20a509238db4df11f898f4b3ec82e94039316cb0e0900",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/columns/all.mjs": "ab21b949a4157ee1460c1254bd172a6b590f171c0f04dc6f6ecbbd6997614e71",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/columns/bigint.mjs": "d02d258bfaecfe715d23ce21ea9ccf08f1696f501f07e188b55b4ba4b35fece1",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/columns/bigserial.mjs": "4d5d2cb2bb01caa3539060eb6875619b01c23931ff5335f8bf4ff33482dfcfc2",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/columns/boolean.mjs": "5ae7dafccb6600f3f92f447fe325768473a0b9369be2800d40936e433a664a5b",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/columns/char.mjs": "3aa33057c5d4052a1e53ed4726af297feae8746d1ba831c0447fb29908b28b90",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/columns/cidr.mjs": "c8b321843e477cad89110af6f91e00c4963c0c2e7992460a1a437fab6318abae",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/columns/common.mjs": "bcf54f12cc3fab9e83020c10d06e67dd6b4dd317c5ec517482ff2f4cc36e25af",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/columns/custom.mjs": "6d85366cd5e540d4e1d775c968a0c4d58fb13c2d06fb8572878c9f474898d3d4",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/columns/date.common.mjs": "2f2a282108da2982ca3283d068814abacb5b882778c4e366f2ab43051c330dfc",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/columns/date.mjs": "22eb1cb06d835ba62ae974780e7564b1fde119063ca67fc60115cbae8aa90ac9",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/columns/double-precision.mjs": "6bd768dea2694babe5c390ce9bfb58bdb3676870393065a99806bdbffa5170e2",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/columns/enum.mjs": "c0c53d54c2e6e5b2d2ea14f4b32c271c8a077ecaa0c8497fac545ef1cd3b9232",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/columns/inet.mjs": "c340e5ff6b0ebec7c05d1945d01f15aa289fe8197be76a4d17645b454ea26f5f",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/columns/int.common.mjs": "7189e298e45b2afb7cbacb18c19dc210c5b7971fc6975b99053a5f7da913bde7",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/columns/integer.mjs": "ad9023f50de54c1a904c762aa429ce3977a4bdff2a8b9bfa72eba16ce52a96e5",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/columns/interval.mjs": "1d9efda74052aadf91e53943520ac452eb36e448327153b11c637e5f1c6de9d5",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/columns/json.mjs": "4edd8020fd1b07a55ad5ba3de5563da8235ca2e5a9941b569eeef2829046ded9",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/columns/jsonb.mjs": "33151b17c6b4077cb97b58ce6a3a20330c3ebd5c3a831043fbb9e3cc8ab90069",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/columns/line.mjs": "c4dc5b53befb597054406db1eab5cf4052a83abd7f5246ea8d0f8a069ebb3e3a",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/columns/macaddr.mjs": "bef97d33492cc131d4cf7dc64361d95f542ef0e9f4b5db35eccfaaf948c0b435",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/columns/macaddr8.mjs": "69038cefe441b46c5dfc099a1127fcf8615962a8688c8bb45025b62ace14c381",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/columns/numeric.mjs": "27c034b02085e7ebec0cc165f84eed710ae7ac4b724593ab4b88c40cb2dd4358",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/columns/point.mjs": "2747c489571141192746063525d89a0e3696b7e1763d2c5dee1af6cb24a1f389",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/columns/postgis_extension/geometry.mjs": "d8abbeac6b9eadcc117d7d96ce07190eb7765460430b3b9bedc58334d17d935d",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/columns/postgis_extension/utils.mjs": "5b2a43f41dabce36f893d41285db25e951f99dc2b446374c33f8511d2576a8da",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/columns/real.mjs": "408ab42d73f2a93340db642e84102553aa24c7a39a63c877590a78b6e76454d4",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/columns/serial.mjs": "6382f3a0163970a53051264ce64c540ed0fd947033411271cbd5aecfa0a9f530",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/columns/smallint.mjs": "f7a2a2433f5b7e2019094abebecde623312fc2c712b7f8c27cca88df150f291d",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/columns/smallserial.mjs": "585515fc0337b58fe018474be847d626393ed73eb071b857221586492bf6f073",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/columns/text.mjs": "004f4285127f25cd6b8b120b340b130af2704c097f17b1af00807f0148b9c8bd",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/columns/time.mjs": "b23c997fb8b0fd1b8b07a8ead81e168bfec53c43e044a4e694cf3eeceafc410a",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/columns/timestamp.mjs": "d57556bc9aaae087d301f07897e9c615f562e37942518a1f4f3c3f4927b075db",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/columns/uuid.mjs": "19b4b568c9399cfdc5a2739c5efdb28609f0108759f5be87354d6ba9953edd46",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/columns/varchar.mjs": "b8c0e41939bda1b127a8541a5b33fb49caa58c8931350fdaef6fbfaa996ea3ae",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/columns/vector_extension/bit.mjs": "4a0c44cb0953d6ec5d7cf8de10893e12a34d7ddb5b82ea78ee5dd2c5931b390f",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/columns/vector_extension/halfvec.mjs": "f3d8b413a0b4ff19aa527d386b18855e1f7929a6d5b12ecb42f347d320f9bb7c",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/columns/vector_extension/sparsevec.mjs": "d008afb5566b5d94785e0da5561c20e835c31715d8c1c18a7458e460b5bfdab4",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/columns/vector_extension/vector.mjs": "b99b8077263aa12e67b479bb0429cdb182465de973ec245c696529875c52973b",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/db.mjs": "23ecaa9c61df2247f6cd7b8d080969fde6ab1cfeb20f89cda37979c5246c028d",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/dialect.mjs": "6560824a7a3e8c06ee67682858c6be5d5ce8b7e9bed192b3c205537c1068089c",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/foreign-keys.mjs": "475c3eb184f88cbefc8a5f65a0f83928786e5e196a97dc23de7a6f7ca6144946",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/indexes.mjs": "8e2e4c405ae3ba9b3a68ae51b4f6268655c54c9915c7775e904835abefe004d1",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/policies.mjs": "7a2903fab2cd55c326f089713a2796206fa78a620487bbb6d0ef4ba8c2561210",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/primary-keys.mjs": "1dd3bf98201ca7cf83b55b15d75bbe9229b1a540886d6ba4c859c1930216dca6",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/query-builders.mjs": "60e5cf3c54771ad446bd601bc28cba137daaa03f5796dbe1f691e8c07d30c084",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/query-builders/count.mjs": "23c48a3d6825f6d4bc387ea06a89f39f5190e778dd6788c0bea53010bb685866",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/query-builders/delete.mjs": "75573928a8be7277e9f82a3cba9683931e85bca1b181785af306f0cdca6551d4",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/query-builders/insert.mjs": "52077a31acae42d89f35afa9230b90d32b9a8fcaad6826b615149b999561973a",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/query-builders/query-builder.mjs": "95820e515db62aa8f98a0e9247830f924cd5b7b03295cc1d8ff4be353b33a839",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/query-builders/query.mjs": "b6ed9034cae7fc05cf57897522bfc41ac464bec3c28460d23d9b009dc76ef2a5",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/query-builders/raw.mjs": "e061cd8846ca2d783561f8687ab3f16f57cad4db75fefe6b3cb0aa0efb89e726",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/query-builders/refresh-materialized-view.mjs": "b502d8902c76ca26f0ce9509a9e9a27383f2c051e74078df7ef8db25e8d95f7e",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/query-builders/select.mjs": "5bd0ab0ba107f9333f583b5495f8d87372c24ee1c520e0c218b45ce9385d24ff",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/query-builders/select.types.mjs": "6a919a447093b8e8d2212ff92c1b206c2363848278d5baaf22e70089cb537000",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/query-builders/update.mjs": "b0f95f8029f459c5999014c33b8e4ef6b5b1b7b0487460060f49449edeb34d53",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/roles.mjs": "1708dc3b235fbdbbb796414a7ea767e53244e417b0d25214b99691501fe3d33d",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/schema.mjs": "4df0c4938f82aafebd5691f4146dff9cdb9bc7ada85a72eb5ab2b21ae365c5d6",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/sequence.mjs": "34e8fb14a00ca019fa393437a4c81fb29541e1f32662286863feef48f658adbe",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/session.mjs": "cc1b664070fb126ebc312665ecd4682724e8454320778484e044030d40636c5a",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/subquery.mjs": "fd2902c427adb850bb98f0e10b4c1145275ad40cab5fba62c20574b83f453a92",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/table.mjs": "553e1da578a2bb50e7159b7e63016806b846382b1bde396a2cd5dc7b0bf93304",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/unique-constraint.mjs": "97006dd50354a170d32fb7e285bca8cd750b8c140ff7897de587b5ba5c042dbc",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/utils.mjs": "afb545ea1f768d6d2e3259e280f73f750bce20959836e479ef2f5b320f3f9fd9",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/utils/array.mjs": "8962364ec86d7cad46cc06019b9090f14713f6018966e297fad0d12a930d670a",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/view-base.mjs": "9a1253280061f150aa0c916f47d479f0f69368b44b10283a4844fdd091d21eee",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/view-common.mjs": "4cb56d1fc9f053a6bb52a721a6964b8889b90e1b4e9fb80cc066c952598cf229",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/pg-core/view.mjs": "31aac64257aa4dfb3aff13002b755a20c9bc089e19a1b94b2a943e89d13d3ad7",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/postgres-js.mjs": "e84ed4e4a151e97d19aab4018ae0512c6c36ca8757a5df27fb586b11727d211e",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/postgres-js/driver.mjs": "7c2e841495695eb0d67f0c28c26cecf90f68463902c4059c2a3a1fc5aa48f6c2",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/postgres-js/session.mjs": "d12119aa26e51dfa2a528bc58ef2afe0328d08acb845246965944182514d9590",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/query-builders/query-builder.mjs": "57ab7260e69261c7c46664ab2c03f1805e27e95e4261b34ad23a098f36c39364",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/query-promise.mjs": "f57d9ecbf0ceba5f4ee1d718d86e2230fa95e7eb4133656daa3b805b4dc3e6b0",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/relations.mjs": "8c4f6dfc17c1dcc22a442a8fecf89ec9a02e595d0ebda079bb2ace285916b8c4",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/selection-proxy.mjs": "b228adc402d722108e4f68632c8295cc1cb5b75863f24793d9f813a315941380",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/sql.mjs": "c82f8ad07e148065163691f6fd47c2f2529d5ba5053d48c55bc690ea1ed3ac9c",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/sql/expressions.mjs": "ba420ec38e55eb474d9ec13837426c2e2cf1dd50bc9cb2bf14eb56ea598eca02",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/sql/expressions/conditions.mjs": "d065efb17473aaca9f38aad650d3874203870a4691c90928894954c5ea618d60",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/sql/expressions/select.mjs": "a5f51dbceae291440a1d5e01be6c0551acaf5d4d0993b0c569570e29942b1fff",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/sql/functions.mjs": "3caf90c1f039dfe5fdf8cf01761afb2533c55f758a087039181350813208bb3d",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/sql/functions/aggregate.mjs": "0c6967401e0d0de500334ae49de7a2a45c89580ac72d72e0df820f41bf34f9e2",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/sql/functions/vector.mjs": "608a543a922b2f18072563ee05b5fa4ce2fbadc63e0426a3cc9b5859b766c0a7",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/sql/sql.mjs": "5baf5a63a333a0dc8aa5a9d27b6fe897ff3a680691e30d8542a4a77375e13246",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/subquery.mjs": "36b0df587febe5da0952d895db4b67264f197e26177a11b20ea9137e5eaf2784",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/table.mjs": "fb882caf7f92cd6a1281ec7350c3231c5744bd301cf8fa74db22c436d6ac6a9a",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/table.utils.mjs": "c2a684bea5acec1374dd56f34180ce846bf87aff51974e48a4b89473323fde1d",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/tracing-utils.mjs": "02ef26224eb05531f7c4da0dcb7ebc0961cd3d73d5a2ecf7a667ce5f87052d67",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/tracing.mjs": "50349960fbb6ef550ed3b0ffcc848b6304d410532483e91c01d2cccb0e336315",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/utils.mjs": "e07b991b279a88ab3dee2553b0a71b34560a71268bc44f7506a8f0247ba09c81",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/version.mjs": "20e5db00c3c201feacf4766e56a1e034a5c26f9f9bfa5f10eda79c00ccd8e1e3",
+    "https://esm.sh/drizzle-orm@0.44.2/denonext/view-common.mjs": "a2fcd8e6b7e251620e25e2648f0e9e7eb4e808524920ee22e858dfe38a6f8b9a",
+    "https://esm.sh/drizzle-orm@0.44.2/pg-core": "2fb40dbe31bef81b6bae7567ff389c8750aba965b7a6b6aa37d2acc00335a6ce",
+    "https://esm.sh/drizzle-orm@0.44.2/postgres-js": "03b3f2f4d7e7f9bc9b9e28b9d8fe2265e9b853316b77c9a9e29ec60c135b5fe7",
+    "https://esm.sh/postgres@3.4.7": "7c3f3a95deef865bb77ce4bb4751895951d6999175b76c84cbf7d63d5386e8f0",
+    "https://esm.sh/postgres@3.4.7/denonext/postgres.mjs": "72a246f6a7c118467e0e1005955dd966bffe7e7fec9f9e3d19704dbaf4357f1e",
+    "https://esm.sh/postgres@3.4.7?target=denonext": "7c3f3a95deef865bb77ce4bb4751895951d6999175b76c84cbf7d63d5386e8f0"
   },
   "workspace": {
     "dependencies": [
-      "jsr:@hono/hono@^4.8.4"
+      "jsr:@hono/hono@^4.8.4",
+      "npm:drizzle-orm@~0.44.2",
+      "npm:postgres@^3.4.7"
     ]
   }
 }

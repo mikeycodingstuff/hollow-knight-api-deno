@@ -1,32 +1,69 @@
 import { Hono } from 'hono'
-import { supabase } from '@/db.ts'
+import { eq } from 'drizzle-orm'
+import { db } from '@/db.ts'
+import { areas } from '@/db/schema.ts'
+import { getIncludes } from '@/helpers.ts'
 
-const areas = new Hono()
+const areasRouter = new Hono()
 
-areas.get('/', async (c) => {
-  const { data, error } = await supabase.from('areas').select('*')
+function buildIncludeOptions(includes: string[]) {
+  const withOptions: Record<string, any> = {}
 
-  if (error) {
-    return c.json({ error }, 500)
+  if (includes.includes('merchants')) {
+    withOptions.areaMerchants = {
+      with: {
+        merchant: true,
+      },
+    }
   }
 
-  return c.json({ data })
+  if (includes.includes('charms')) {
+    withOptions.areaCharms = {
+      with: {
+        charm: true,
+      },
+    }
+  }
+
+  return withOptions
+}
+
+areasRouter.get('/', async (c) => {
+  const includes = getIncludes(c.req.query('include'))
+
+  try {
+    const withOptions = buildIncludeOptions(includes)
+
+    const data = await db.query.areas.findMany({
+      with: withOptions,
+    })
+
+    return c.json({ data })
+  } catch (_) {
+    return c.json({ error: 'Failed to fetch areas' }, 500)
+  }
 })
 
-areas.get('/:slug', async (c) => {
+areasRouter.get('/:slug', async (c) => {
   const slug = c.req.param('slug')
+  const includes = getIncludes(c.req.query('include'))
 
-  const { data, error } = await supabase
-    .from('areas')
-    .select('*')
-    .eq('slug', slug)
-    .single()
+  try {
+    const withOptions = buildIncludeOptions(includes)
 
-  if (error) {
-    return c.json({ error: 'Area not found' }, 404)
+    const data = await db.query.areas.findFirst({
+      where: eq(areas.slug, slug),
+      with: withOptions,
+    })
+
+    if (!data) {
+      return c.json({ error: 'Area not found' }, 404)
+    }
+
+    return c.json({ data })
+  } catch (_) {
+    return c.json({ error: 'Failed to fetch area' }, 500)
   }
-
-  return c.json({ data })
 })
 
-export default areas
+export default areasRouter

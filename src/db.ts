@@ -1,6 +1,8 @@
-import { createClient } from 'https://esm.sh/@supabase/supabase-js'
+import { drizzle } from 'drizzle-orm/postgres-js'
+import postgres from 'postgres'
+import * as schema from '@/db/schema.ts'
 
-const supabaseUrl = Deno.env.get('SUPABASE_URL')!
-const supabaseKey = Deno.env.get('SUPABASE_ANON_KEY')!
+const connectionString = Deno.env.get('SUPABASE_DB_URL')!
 
-export const supabase = createClient(supabaseUrl, supabaseKey)
+const client = postgres(connectionString, { prepare: false })
+export const db = drizzle(client, { schema })

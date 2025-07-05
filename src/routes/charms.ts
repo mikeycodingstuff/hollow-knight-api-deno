@@ -1,32 +1,65 @@
 import { Hono } from 'hono'
-import { supabase } from '@/db.ts'
+import { eq } from 'drizzle-orm'
+import { db } from '@/db.ts'
+import { charms } from '@/db/schema.ts'
+import { getIncludes } from '@/helpers.ts'
 
-const charms = new Hono()
+const charmsRouter = new Hono()
 
-charms.get('/', async (c) => {
-  const { data, error } = await supabase.from('charms').select('*')
+function buildIncludeOptions(includes: string[]) {
+  const withOptions: Record<string, any> = {}
 
-  if (error) {
-    return c.json({ error }, 500)
+  if (includes.includes('dlc')) {
+    withOptions.downloadableContent = true
   }
 
-  return c.json({ data })
+  if (includes.includes('areas')) {
+    withOptions.areaCharms = {
+      with: {
+        area: true,
+      },
+    }
+  }
+
+  return withOptions
+}
+
+charmsRouter.get('/', async (c) => {
+  const includes = getIncludes(c.req.query('include'))
+
+  try {
+    const withOptions = buildIncludeOptions(includes)
+
+    const data = await db.query.charms.findMany({
+      with: withOptions,
+    })
+
+    return c.json({ data })
+  } catch (_) {
+    return c.json({ error: 'Failed to fetch charms' }, 500)
+  }
 })
 
-charms.get('/:slug', async (c) => {
+charmsRouter.get('/:slug', async (c) => {
   const slug = c.req.param('slug')
+  const includes = getIncludes(c.req.query('include'))
 
-  const { data, error } = await supabase
-    .from('charms')
-    .select('*')
-    .eq('slug', slug)
-    .single()
+  try {
+    const withOptions = buildIncludeOptions(includes)
 
-  if (error) {
-    return c.json({ error: 'Charm not found' }, 404)
+    const data = await db.query.charms.findFirst({
+      where: eq(charms.slug, slug),
+      with: withOptions,
+    })
+
+    if (!data) {
+      return c.json({ error: 'Charm not found' }, 404)
+    }
+
+    return c.json({ data })
+  } catch (_) {
+    return c.json({ error: 'Failed to fetch charm' }, 500)
   }
-
-  return c.json({ data })
 })
 
-export default charms
+export default charmsRouter
