@@ -1,2 +1,4 @@
 .idea/
 .env
+# Since Laravel app handles all migrations
+supabase/
