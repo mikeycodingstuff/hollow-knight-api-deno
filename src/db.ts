@@ -1,4 +1,5 @@
 import { drizzle } from 'drizzle-orm/postgres-js'
+import { sql } from 'drizzle-orm'
 import postgres from 'postgres'
 import * as schema from '@/db/schema.ts'
 
@@ -12,3 +13,34 @@ const client = postgres({
 })
 
 export const db = drizzle(client, { schema })
+
+// Debug database connection on startup
+async function debugDatabase() {
+  try {
+    console.log('🔧 DB Config:', {
+      host: Deno.env.get('DB_HOST'),
+      port: Deno.env.get('DB_PORT'),
+      database: Deno.env.get('DB_NAME'),
+      user: Deno.env.get('DB_USER'),
+      hasPassword: !!Deno.env.get('DB_PASSWORD'),
+    })
+
+    // Test basic connection
+    const result = await db.execute(sql`SELECT current_database(), current_user, version()`)
+    console.log('✅ DB Connected:', result[0])
+
+    // List tables
+    const tables = await db.execute(sql`
+      SELECT table_name FROM information_schema.tables 
+      WHERE table_schema = 'public' 
+      ORDER BY table_name
+    `)
+    console.log('📋 Available tables:', tables.map(t => t.table_name))
+
+  } catch (error) {
+    console.error('❌ DB Connection Error:', error)
+  }
+}
+
+// Run debug (only in production to see Deploy logs)
+debugDatabase()
