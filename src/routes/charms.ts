@@ -35,9 +35,8 @@ charmsRouter.get('/', async (c) => {
     })
 
     return c.json({ data })
-  } catch (error) {
-    console.log(error)
-    return c.json({ error: error }, 500)
+  } catch (_) {
+    return c.json({ error: 'Failed to fetch charms' }, 500)
   }
 })
 
