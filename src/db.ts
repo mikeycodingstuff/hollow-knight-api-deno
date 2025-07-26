@@ -3,15 +3,14 @@ import { sql } from 'drizzle-orm'
 import postgres from 'postgres'
 import * as schema from '@/db/schema.ts'
 
-const encodedPassword = encodeURIComponent(Deno.env.get('DB_PASSWORD')!)
+const user = encodeURIComponent(Deno.env.get('DB_USER') ?? '')
+const password = encodeURIComponent(Deno.env.get('DB_PASSWORD') ?? '')
+const host = Deno.env.get('DB_HOST') ?? ''
+const port = Deno.env.get('DB_PORT') ?? ''
+const dbName = Deno.env.get('DB_NAME') ?? ''
 
 const connectionString =
-  `postgresql://postgres.atshaldvksaehwxunuve:${encodedPassword}@aws-0-eu-west-2.pooler.supabase.com:5432/postgres`
-
-console.log(
-  '🔗 Using connection string (password hidden):',
-  connectionString.replace(/:([^@]+)@/, ':***@'),
-)
+  `postgresql://${user}:${password}@${host}:${port}/${dbName}`
 
 const client = postgres(connectionString, {
   prepare: false,
