@@ -2,7 +2,13 @@ import { drizzle } from 'drizzle-orm/postgres-js'
 import postgres from 'postgres'
 import * as schema from '@/db/schema.ts'
 
-const connectionString = Deno.env.get('SUPABASE_DB_URL')!
+const client = postgres({
+  host: Deno.env.get('DB_HOST')!,
+  port: parseInt(Deno.env.get('DB_PORT') || '5432'),
+  database: Deno.env.get('DB_NAME')!,
+  username: Deno.env.get('DB_USER')!,
+  password: Deno.env.get('DB_PASSWORD')!,
+  prepare: false,
+})
 
-const client = postgres(connectionString, { prepare: false })
 export const db = drizzle(client, { schema })
