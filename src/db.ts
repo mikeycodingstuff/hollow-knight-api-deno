@@ -8,8 +8,6 @@ const missing = requiredEnvVars.filter(key => !Deno.env.get(key))
 
 if (missing.length > 0) {
   throw new Error(`Missing required environment variables: ${missing.join(', ')}`)
-} else {
-  console.log('all envs present', Deno.env.get('DB_NAME')!, Deno.env.get('DB_USER')!)
 }
 
 const client = postgres({
