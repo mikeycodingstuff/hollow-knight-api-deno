@@ -6,6 +6,7 @@ import merchants from '@/routes/merchants.ts'
 
 export const api = new Hono()
 
+api.get('/', (c) => c.text('home page!'))
 api.route('/areas', areas)
 api.route('/charms', charms)
 api.route('/dlcs', dlcs)

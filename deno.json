@@ -15,5 +15,13 @@
   "fmt": {
     "singleQuote": true,
     "semiColons": false
+  },
+  "deploy": {
+    "project": "ad479a22-a2d3-4902-834f-23363f93b7f1",
+    "exclude": [
+      "**/node_modules"
+    ],
+    "include": [],
+    "entrypoint": "main.ts"
   }
 }
