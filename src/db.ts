@@ -3,6 +3,15 @@ import { sql } from 'drizzle-orm'
 import postgres from 'postgres'
 import * as schema from '@/db/schema.ts'
 
+const requiredEnvVars = ['DB_HOST', 'DB_NAME', 'DB_USER', 'DB_PASSWORD']
+const missing = requiredEnvVars.filter(key => !Deno.env.get(key))
+
+if (missing.length > 0) {
+  throw new Error(`Missing required environment variables: ${missing.join(', ')}`)
+} else {
+  console.log('all envs present', Deno.env.get('DB_NAME')!, Deno.env.get('DB_USER')!)
+}
+
 const client = postgres({
   host: Deno.env.get('DB_HOST')!,
   port: parseInt(Deno.env.get('DB_PORT') || '5432'),
