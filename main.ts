@@ -29,7 +29,7 @@ app.get('/health', async (c) => {
 
 // Only register cron in Deno Deploy (not locally)
 if (Deno.env.get('DENO_DEPLOYMENT_ID')) {
-  Deno.cron('Keep Supabase DB active', '0 0 * * 0', async () => {
+  Deno.cron('Keep Supabase DB active', { dayOfWeek: 0, hour: 0, minute: 0 }, async () => {
     try {
       await db.execute(sql`SELECT 1 as health`)
       console.log('✅ Weekly DB ping executed:', new Date().toISOString())
