@@ -1,5 +1,4 @@
 import { drizzle } from 'drizzle-orm/postgres-js'
-import { sql } from 'drizzle-orm'
 import postgres from 'postgres'
 import * as schema from '@/db/schema.ts'
 
@@ -17,9 +16,3 @@ const client = postgres(connectionString, {
 })
 
 export const db = drizzle(client, { schema })
-
-// Test connection
-console.log('🔧 Testing database connection...')
-db.execute(sql`SELECT current_database(), current_user`)
-  .then((result) => console.log('✅ Connected to:', result[0]))
-  .catch((error) => console.error('❌ Connection failed:', error.message))
