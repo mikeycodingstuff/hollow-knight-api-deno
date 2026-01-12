@@ -3,10 +3,18 @@ import {
   integer,
   pgTable,
   primaryKey,
+  serial,
   text,
+  timestamp,
   varchar,
 } from 'drizzle-orm/pg-core'
 import { relations } from 'drizzle-orm'
+
+export const heartbeat = pgTable('heartbeat', {
+  id: serial('id').primaryKey(),
+  pingedAt: timestamp('pinged_at', { withTimezone: true }).defaultNow()
+    .notNull(),
+})
 
 export const areas = pgTable('areas', {
   id: integer('id').primaryKey(),

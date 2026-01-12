@@ -2,6 +2,7 @@ import { Hono } from 'hono'
 import { api } from '@/api.ts'
 import { db } from '@/db.ts'
 import { sql } from 'drizzle-orm'
+import { heartbeat } from '@/db/schema.ts'
 
 const app = new Hono()
 
@@ -11,7 +12,17 @@ app.route('/api', api)
 // Health check endpoint
 app.get('/health', async (c) => {
   try {
-    await db.execute(sql`SELECT 1 as health`)
+    await db.insert(heartbeat).values({})
+
+    // Clean up old records keep latest 100
+    await db.execute(sql`
+          DELETE FROM heartbeat
+          WHERE id NOT IN (
+              SELECT id FROM heartbeat
+              ORDER BY pinged_at DESC
+              LIMIT 100
+              )
+      `)
 
     return c.json({
       status: 'ok',
@@ -29,14 +40,18 @@ app.get('/health', async (c) => {
 
 // Only register cron in Deno Deploy (not locally)
 if (Deno.env.get('DENO_DEPLOYMENT_ID')) {
-  Deno.cron('Keep Supabase DB active', { dayOfWeek: 1, hour: 0, minute: 0 }, async () => {
-    try {
-      await db.execute(sql`SELECT 1 as health`)
-      console.log('✅ Weekly DB ping executed:', new Date().toISOString())
-    } catch (error) {
-      console.error('❌ Cron job failed:', error)
-    }
-  })
+  Deno.cron(
+    'Keep Supabase DB active',
+    { dayOfWeek: 1, hour: 0, minute: 0 },
+    async () => {
+      try {
+        await db.insert(heartbeat).values({})
+        console.log('✅ Weekly DB ping executed:', new Date().toISOString())
+      } catch (error) {
+        console.error('❌ Cron job failed:', error)
+      }
+    },
+  )
 }
 
 Deno.serve(app.fetch)
