@@ -42,7 +42,7 @@ app.get('/health', async (c) => {
 if (Deno.env.get('DENO_DEPLOYMENT_ID')) {
   Deno.cron(
     'Keep Supabase DB active',
-    { dayOfWeek: 1, hour: 0, minute: 0 },
+    { hour: 1, minute: 0 },
     async () => {
       try {
         await db.insert(heartbeat).values({})
