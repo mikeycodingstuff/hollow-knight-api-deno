@@ -14,15 +14,7 @@ app.get('/health', async (c) => {
   try {
     await db.insert(heartbeat).values({})
 
-    // Clean up old records keep latest 100
-    await db.execute(sql`
-          DELETE FROM heartbeat
-          WHERE id NOT IN (
-              SELECT id FROM heartbeat
-              ORDER BY pinged_at DESC
-              LIMIT 100
-              )
-      `)
+    await cleanupHeartbeatRecords()
 
     return c.json({
       status: 'ok',
@@ -38,6 +30,20 @@ app.get('/health', async (c) => {
   }
 })
 
+// Clean up old records - keep the latest 100
+async function cleanupHeartbeatRecords() {
+	await db.execute(sql`
+      DELETE
+      FROM heartbeat
+      WHERE id NOT IN (
+          SELECT id
+          FROM heartbeat
+          ORDER BY pinged_at DESC
+          LIMIT 100
+          )
+	`)
+}
+
 // Only register cron in Deno Deploy (not locally)
 if (Deno.env.get('DENO_DEPLOYMENT_ID')) {
   Deno.cron(
@@ -46,9 +52,12 @@ if (Deno.env.get('DENO_DEPLOYMENT_ID')) {
     async () => {
       try {
         await db.insert(heartbeat).values({})
-        console.log('✅ Weekly DB ping executed:', new Date().toISOString())
+
+        await cleanupHeartbeatRecords();
+
+        console.log('Successfully pinged Supabase with write operations.', new Date().toISOString())
       } catch (error) {
-        console.error('❌ Cron job failed:', error)
+        console.error('Failed to ping Supabase:', error)
       }
     },
   )
